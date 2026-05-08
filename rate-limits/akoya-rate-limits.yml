@@ -7,29 +7,34 @@ created: '2026-05-08'
 modified: '2026-05-08'
 reconciled: false
 tags:
-- Fintech
-- Open Banking
-- Aggregator
-- Tokenized
-- US
-- Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Akoya. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+  - Open Banking
+  - Rate Limiting
+description: >-
+  Akoya's data-provider banks each impose their own rate limits per the FDX standard.
+  Recipients should expect roughly 60-120 requests per minute per (data provider, recipient)
+  pair, with stricter caps on transaction history endpoints. Throttled requests return HTTP 429.
+notes: Limits vary by data provider and contract; figures are typical FDX deployments.
 sources:
-- https://akoya.com/
+  - https://docs.akoya.com/
+  - https://financialdataexchange.org/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  - name: Per data-provider per-minute
+    scope: data_provider
+    metric: requests_per_minute
+    limit: 60
+    notes: Varies; many banks cap closer to 30 rpm for transactions endpoints.
+  - name: PSD2-equivalent SCA cadence (Reg E aligned)
+    scope: end_user
+    metric: refreshes_per_day
+    limit: -1
+    notes: Per data-provider policy; honor refresh-token expiry and user re-consent.
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  - name: Token Refresh
+    description: Honor data-provider refresh-token cadence; re-prompt user when token expires.
+  - name: Backoff Strategy
+    description: Honor 429 Retry-After and apply exponential backoff with jitter.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

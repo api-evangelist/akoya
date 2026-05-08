@@ -2,8 +2,6 @@ aid: akoya
 url: https://raw.githubusercontent.com/api-evangelist/akoya/refs/heads/main/apis.yml
 name: Akoya
 x-type: company
-description: >-
-  Akoya is a tokenized data-access network for US financial institutions, offering API-based account aggregation as a Plaid/Yodlee alternative for US banks.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Fintech
@@ -11,13 +9,61 @@ tags:
   - Aggregator
   - Tokenized
   - US
+  - FDX
+  - Account Aggregation
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+description: >-
+  Akoya is a tokenized data-access network for US financial institutions. It implements the
+  Financial Data Exchange (FDX) API standard, replacing screen-scraping with token-permissioned
+  API access to consumer accounts. Akoya APIs are FDX-aligned: Accounts, Account Details,
+  Account Statements, Transactions, Investments, Tax forms, Payments, and Customer endpoints.
+  OAuth 2.0 authentication.
+apis:
+  - aid: akoya:fdx-api
+    name: Akoya FDX API
+    tags:
+      - FDX
+      - Accounts
+      - Transactions
+      - Investments
+      - Tax
+      - Payments
+      - US
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://docs.akoya.com/
+    description: >-
+      FDX-aligned REST API exposing Accounts (list), Account Details, Account Statements,
+      Transactions, Investments, Tax forms (1099-INT, 1099-DIV, etc.), Payments, and Customer
+      endpoints. OAuth 2.0 with consumer consent at the data-provider's authorization server.
+      Sandbox at sandbox-products.ddp.akoya.com.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/
+      - type: Sandbox
+        url: https://sandbox-products.ddp.akoya.com
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - FDX-aligned API standard
+      - OAuth 2.0 token-permissioned access
+      - Tax form data (1099 variants)
+      - Investment account details
+      - Major US bank network coverage
+    x-use-cases:
+      - Personal finance management
+      - Lending decisioning
+      - Tax preparation software
+      - Wealth aggregation
 common:
-  - type: Website
+  - type: Portal
     url: https://akoya.com/
+  - type: Documentation
+    url: https://docs.akoya.com/
+  - type: FDX Standard
+    url: https://financialdataexchange.org/
   - type: Plans
     url: plans/akoya-plans-pricing.yml
   - type: RateLimits
