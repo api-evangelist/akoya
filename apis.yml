@@ -1,7 +1,7 @@
 aid: akoya
 url: https://raw.githubusercontent.com/api-evangelist/akoya/refs/heads/main/apis.yml
 name: Akoya
-x-type: company
+kind: company
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Fintech
