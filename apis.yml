@@ -58,6 +58,10 @@ apis:
       - Tax preparation software
       - Wealth aggregation
 common:
+  - type: GitHubOrganization
+    url: https://github.com/akoya-llc
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/akoyanetwork
   - type: Portal
     url: https://akoya.com/
   - type: Documentation
