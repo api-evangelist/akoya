@@ -74,7 +74,7 @@ common:
     url: rate-limits/akoya-rate-limits.yml
   - type: FinOps
     url: finops/akoya-finops.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://akoya.com/llms.txt
 maintainers:
   - FN: Kin Lane
