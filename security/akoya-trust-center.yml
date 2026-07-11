@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://akoya.com/security
+url: https://akoya.com/security
+certifications:
+- SOC 2
+- HIPAA
+evidence:
+- source: https://akoya.com/security
+  keywords:
+  - soc2
+  - hipaa

@@ -58,6 +58,10 @@ apis:
       - Tax preparation software
       - Wealth aggregation
 common:
+  - type: TrustCenter
+    url: security/akoya-trust-center.yml
+  - type: DomainSecurity
+    url: security/akoya-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/akoya-llc
   - type: LinkedIn
@@ -76,6 +80,8 @@ common:
     url: finops/akoya-finops.yml
   - type: LlmsText
     url: https://akoya.com/llms.txt
+  - url: https://akoya.com/news/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
