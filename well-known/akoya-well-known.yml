@@ -1,0 +1,30 @@
+generated: '2026-07-23'
+method: searched
+source: live probes of /.well-known/* on Akoya hosts
+note: >-
+  No /.well-known/ discovery documents are published on any Akoya host. OAuth/OIDC metadata is
+  not exposed anonymously — the authorization server is the consumer's own financial institution,
+  reached through Akoya's network rather than a central discovery endpoint. Recorded as valid
+  empty result; no WellKnown/APICatalog pointer wired.
+hosts:
+  - host: https://akoya.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://api.akoya.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://docs.akoya.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}

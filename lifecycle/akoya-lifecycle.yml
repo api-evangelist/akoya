@@ -1,0 +1,31 @@
+generated: '2026-07-23'
+method: searched
+source: https://docs.akoya.com/
+docs: https://docs.akoya.com/changelog
+versioning:
+  scheme: uri-path
+  current: v3
+  detail: >-
+    Product API version is carried in the URL path (e.g. /accounts/v3, /transactions/v3);
+    Statements is served at v2. Platform service scopes are independently versioned
+    (app_management_v2, notification_v1).
+  docs: https://docs.akoya.com/reference/api-overview
+changelog:
+  url: https://docs.akoya.com/changelog
+  detail: Dated product changelog published on the docs.akoya.com reference hub.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  detail: >-
+    No formal, publicly documented deprecation/Sunset-header policy was found. Version transitions
+    are communicated via the docs changelog and, for network members, contractually.
+status_page:
+  url: null
+  detail: >-
+    No public status page found (status.akoya.com does not resolve). Operational availability of
+    downstream data providers is surfaced programmatically via the Notifications API (outage and
+    availability webhooks) rather than a hosted status page.
+  see: asyncapi/akoya-notifications-webhooks.yml
+sla:
+  url: null
+  detail: SLA terms are governed by the network membership agreement, not publicly published.

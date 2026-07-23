@@ -439,6 +439,32 @@ common:
     url: finops/akoya-finops.yml
   - type: Blog
     url: https://akoya.com/blog
+  - type: APIReference
+    url: https://docs.akoya.com/reference/api-overview
+  - type: GettingStarted
+    url: https://docs.akoya.com/docs/getting-started
+  - type: ChangeLog
+    url: https://docs.akoya.com/changelog
+  - type: Login
+    url: https://recipient.ddp.akoya.com/login
+  - type: Authentication
+    url: authentication/akoya-authentication.yml
+  - type: Conventions
+    url: conventions/akoya-conventions.yml
+  - type: Sandbox
+    url: sandbox/akoya-sandbox.yml
+  - type: Lifecycle
+    url: lifecycle/akoya-lifecycle.yml
+  - type: Conformance
+    url: conformance/akoya-conformance.yml
+  - type: Compliance
+    url: https://akoya.com/security
+  - type: ErrorCatalog
+    url: errors/akoya-problem-types.yml
+  - type: Webhooks
+    url: asyncapi/akoya-notifications-webhooks.yml
+  - type: LLMsTxt
+    url: llms/akoya-llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

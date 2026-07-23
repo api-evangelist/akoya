@@ -1,0 +1,30 @@
+generated: '2026-07-23'
+method: searched
+source: https://docs.akoya.com/docs/akoya-apis
+docs: https://akoya.com/products/notifications
+spec_type: Webhooks
+summary: >-
+  Akoya's Notifications API is a webhook-delivered event surface. Data recipients create a
+  subscription and receive HTTP POST callbacks about the operational state of the network —
+  principally data-provider outage and availability events — instead of polling. Subscription
+  management uses a service token (client_credentials with the notification_v1 scope).
+transport: webhook
+delivery: HTTP POST callback to a registered subscription endpoint
+subscription:
+  model: >-
+    A recipient app registers a subscription (bound to one or more data providers) via the
+    Notifications API; Akoya then POSTs event payloads to the subscription's callback URL.
+  auth: client_credentials service token, scope notification_v1 (+ at least one provider scope)
+events:
+  - name: data-provider-outage
+    description: A data provider becomes unavailable / degraded.
+  - name: data-provider-availability
+    description: A previously unavailable data provider returns to service.
+sandbox:
+  detail: >-
+    A sandbox test trigger emits a sample webhook payload to a registered subscription; the id in
+    the POST body is a valid sandbox subscription id.
+  source: https://docs.akoya.com/reference/get-tax
+notes:
+  - No published AsyncAPI document; this is the documented webhook catalog (type Webhooks).
+  - Complements the absence of a hosted status page — availability is delivered as events.

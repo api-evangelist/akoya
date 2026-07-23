@@ -1,13 +1,19 @@
-generated: '2026-07-11'
+generated: '2026-07-23'
 method: searched
 probe: true
 source: https://akoya.com/security
 url: https://akoya.com/security
 certifications:
-- SOC 2
-- HIPAA
+- SOC 2 Type 2
+- FIPS 140
+frameworks:
+- NIST CSF
+- CIS
+- COSO
+data_handling: Passthrough architecture; no consumer data stored at rest; encrypted in transit.
 evidence:
 - source: https://akoya.com/security
   keywords:
-  - soc2
-  - hipaa
+  - soc 2 type 2
+  - fips-140
+  - nist csf

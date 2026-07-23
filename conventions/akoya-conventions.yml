@@ -1,0 +1,49 @@
+generated: '2026-07-23'
+method: searched
+source: https://docs.akoya.com/reference/get-accounts
+docs: https://docs.akoya.com/guides/pagination
+summary: >-
+  Cross-cutting request/response conventions for Akoya's FDX-aligned REST surface, captured from
+  the docs.akoya.com reference hub. Akoya follows the Financial Data Exchange (FDX) API contract.
+authentication:
+  style: oauth2-bearer
+  bearer_token: id_token
+  detail: OAuth 2.0; the id_token is presented as the bearer on data-access calls.
+  see: authentication/akoya-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v3
+  detail: >-
+    Product version is embedded in the path segment (e.g. /accounts/v3, /transactions/v3,
+    /balances/v3). Some products carry their own version — Statements is served at v2. Platform
+    scopes are versioned similarly (app_management_v2, notification_v1).
+standardization:
+  mode_param:
+    param: mode
+    value: standard
+    detail: >-
+      The `mode=standard` query parameter returns FDX-aligned, standardized data values
+      regardless of the underlying institution's native representation.
+pagination:
+  style: offset
+  params: [offset, limit, startTime, endTime]
+  detail: >-
+    Transaction history is paginated with offset/limit query parameters; startTime/endTime bound
+    the window. Documented at the Pagination guide.
+  docs: https://docs.akoya.com/guides/pagination
+partial_response:
+  detail: >-
+    Data endpoints can return 206 Partial Content when a downstream data provider returns an
+    incomplete result set for a permissioned account.
+error_envelope:
+  format: fdx-error
+  statuses: [400, 401, 404, 206]
+  see: errors/akoya-problem-types.yml
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency-key header or idempotent-write contract is documented. Akoya's consumer
+    data-access products are predominantly read (GET) operations, so idempotency keys are not
+    part of the published contract.
+rate_limits:
+  see: rate-limits/akoya-rate-limits.yml

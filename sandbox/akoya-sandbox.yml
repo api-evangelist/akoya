@@ -1,0 +1,39 @@
+generated: '2026-07-23'
+method: searched
+source: https://docs.akoya.com/reference/get-accounts
+docs: https://docs.akoya.com/docs/getting-started
+summary: >-
+  Akoya offers a free, self-service sandbox for development against FDX-aligned mock data before
+  a production network membership agreement is in place. Sandbox data-access calls are routed per
+  data provider under ddp.akoya.com; the reference "mikomo" test provider supplies deterministic
+  mock consumer accounts, balances, transactions, investments, statements, customers, and tax data.
+environments:
+  - name: sandbox
+    products_host: https://sandbox-products.ddp.akoya.com
+    recipient_hub: https://recipient.ddp.akoya.com/login
+    description: Free self-service development environment with mock FDX data.
+  - name: production
+    products_host: https://api.akoya.com
+    description: Live network access; requires an Akoya membership agreement.
+test_provider:
+  id: mikomo
+  description: >-
+    Reference sandbox data provider. Data-access routes take the shape
+    /{product}/v{n}/mikomo/{...}, e.g. /accounts/v3/mikomo, /accounts-info/v3/mikomo,
+    /balances/v3/mikomo, /transactions/v3/mikomo/{accountId}, /customers/v3/mikomo/current,
+    /statements/v2/mikomo/{accountId}/{statementId}, /contacts/v3/mikomo/{accountId}.
+example_routes:
+  - https://sandbox-products.ddp.akoya.com/accounts/v3/mikomo
+  - https://sandbox-products.ddp.akoya.com/accounts-info/v3/mikomo
+  - https://sandbox-products.ddp.akoya.com/balances/v3/mikomo
+  - https://sandbox-products.ddp.akoya.com/transactions/v3/mikomo/g833202fb0866d0ad83472c429
+  - https://sandbox-products.ddp.akoya.com/customers/v3/mikomo/current
+  - https://sandbox-products.ddp.akoya.com/statements/v2/mikomo/513815781465/P9CvLPKDaFRMbNDkhu1
+notifications_testing:
+  description: >-
+    The Notifications API sandbox exposes a test trigger that emits a sample webhook payload to a
+    registered subscription; the id in the POST callback is a valid sandbox subscription id.
+  source: https://docs.akoya.com/reference/get-tax
+notes:
+  - No test card/bank numbers — data is mock FDX resources keyed to the mikomo provider.
+  - Use the mode=standard query param in sandbox to receive FDX-standardized data values.

@@ -1,0 +1,45 @@
+generated: '2026-07-23'
+method: searched
+source: https://docs.akoya.com/reference/token
+docs: https://docs.akoya.com/docs/oauth-2
+summary:
+  types: [oauth2]
+  oauth2_flows: [authorizationCode, clientCredentials]
+  token_types: [id_token, access_token, refresh_token]
+  bearer_token: id_token
+  notes: >-
+    Akoya implements OAuth 2.0 per the FDX standard. Consumers authenticate and grant consent
+    at their own financial institution's authorization server; the id_token returned is used as
+    the bearer token on FDX data-access calls and must be renewed via the refresh_token.
+schemes:
+  - name: OAuth2AuthorizationCode
+    type: oauth2
+    flow: authorizationCode
+    grant_type: authorization_code
+    description: >-
+      Consumer-permissioned data access. The recipient app redirects the consumer to their
+      financial institution's Akoya-hosted authorization server; on consent an authorization
+      code is returned to the app's registered redirect_uri and exchanged at the token endpoint
+      for an id_token + refresh_token. Requires grant_type=authorization_code, the registered
+      redirect_uri, the returned code, and the app's clientId/clientSecret.
+    parameters: [grant_type, redirect_uri, code, clientId, clientSecret]
+    source: https://docs.akoya.com/reference/token
+  - name: OAuth2ClientCredentials
+    type: oauth2
+    flow: clientCredentials
+    grant_type: client_credentials
+    description: >-
+      Service-token (two-legged) authentication for the platform/service APIs — Consent, Apps
+      Management, and Notifications. The recipient presents grant_type=client_credentials with
+      its clientId and clientSecret to obtain a service token used as the bearer on management
+      calls. Scope must include at least one provider (and the relevant product scope, e.g.
+      app_management_v2 for Apps Management, notification_v1 for Notifications).
+    parameters: [grant_type, clientId, clientSecret, scope]
+    source: https://docs.akoya.com/reference/token
+scope_model:
+  note: >-
+    OAuth scope on client-credentials requests must include at least one data-provider scope
+    plus the product/service scope for the API being called (documented examples include
+    app_management_v2 and notification_v1). Data-access scopes are bounded by the consumer's
+    consent grant. Akoya does not publish a full downloadable scope reference; scopes are
+    provisioned per app in the Data Recipient Hub.

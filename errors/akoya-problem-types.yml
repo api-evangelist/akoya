@@ -1,0 +1,24 @@
+generated: '2026-07-23'
+method: derived
+source: docs.akoya.com reference operations (response refs observed on data-access endpoints)
+format: fdx-error
+note: >-
+  Akoya's FDX-aligned data endpoints share a common set of response statuses referenced across
+  operations (e.g. accountInfo200/206, plus shared 400/401/404 components). No downloadable
+  OpenAPI is published; these are derived from the response components surfaced on the reference
+  hub. The error body follows the FDX error object rather than RFC 9457 application/problem+json.
+problems:
+  - status: 206
+    title: Partial Content
+    detail: >-
+      A downstream data provider returned an incomplete result for the permissioned account;
+      partial data is returned. Retry or reconcile against the provider.
+  - status: 400
+    title: Bad Request
+    detail: Malformed request, invalid query parameter, or unsupported mode value.
+  - status: 401
+    title: Unauthorized
+    detail: Missing/expired id_token or insufficient consent scope; refresh the token or re-consent.
+  - status: 404
+    title: Not Found
+    detail: The requested resource, account, or data provider is not available for this grant.

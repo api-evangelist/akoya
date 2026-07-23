@@ -1,0 +1,38 @@
+# Akoya
+
+> Akoya operates a tokenized, consumer-permissioned data-access network for US open finance, reaching 4,500+ financial institutions and powering 7,500+ apps and data recipients. It implements the Financial Data Exchange (FDX) API standard to replace screen-scraping with OAuth 2.0, token-permissioned access to consumer financial data. Consumers authenticate at their own financial institution's authorization server; data recipients exchange an authorization code for an id_token and call FDX-aligned REST endpoints. Production access requires a network membership agreement; a free self-service sandbox (mikomo test provider) is available for development.
+
+## APIs (consumer data-access products)
+- [Accounts API](https://docs.akoya.com/reference/get-accounts): FDX-aligned account list and account details for permissioned accounts.
+- [Balances API](https://akoya.com/products/balances): Real-time and available balances for permissioned accounts.
+- [Transactions API](https://docs.akoya.com/reference/get-transactions): FDX-aligned transaction history; offset/limit pagination; mode=standard.
+- [Investments API](https://akoya.com/products/investments): Holdings/positions and tax lots (cost basis) for brokerage accounts.
+- [Statements API](https://akoya.com/products/statements): Available account statements and documents.
+- [Customers API](https://akoya.com/products/customers): FDX customer/party identity and contact data.
+- [Payments API](https://akoya.com/products/payments): Tokenized ACH/RTP account credentials for instant account verification.
+- [Tax API](https://docs.akoya.com/reference/get-tax): FDX-aligned 1099 tax forms for permissioned accounts.
+
+## Platform / service APIs
+- [Consent API](https://docs.akoya.com/docs/akoya-apis): Look up and manage consumer consent grants (client_credentials).
+- [Apps Management API](https://docs.akoya.com/docs/akoya-apis): Register and manage recipient apps and credentials (scope app_management_v2).
+- [Notifications API](https://akoya.com/products/notifications): Webhook subscriptions for data-provider outage/availability events (scope notification_v1).
+
+## Auth & conventions
+- [OAuth 2.0](https://docs.akoya.com/docs/oauth-2): authorization_code (consumer data) and client_credentials (platform APIs); id_token is the bearer token; refresh_token renews it.
+- [Token endpoint](https://docs.akoya.com/reference/token)
+- [Pagination](https://docs.akoya.com/guides/pagination): offset/limit + startTime/endTime.
+- mode=standard query param returns FDX-standardized values.
+
+## Docs & resources
+- [API overview](https://docs.akoya.com/reference/api-overview)
+- [Developer docs hub](https://docs.akoya.com/)
+- [Changelog](https://docs.akoya.com/changelog)
+- [GitHub (Go code samples)](https://github.com/akoya-llc)
+- [Security & compliance](https://akoya.com/security): SOC 2 Type 2, FIPS 140, NIST CSF; passthrough (no data at rest).
+- [Website](https://akoya.com/)
+- [Blog](https://akoya.com/blog)
+
+## Notes
+- Sandbox base: https://sandbox-products.ddp.akoya.com (routes /{product}/v3/mikomo/...).
+- Production base: https://api.akoya.com — requires an Akoya network membership agreement.
+- No publicly downloadable OpenAPI/Postman artifact; docs render via the docs.akoya.com reference hub.

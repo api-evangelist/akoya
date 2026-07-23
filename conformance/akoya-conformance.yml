@@ -1,0 +1,51 @@
+generated: '2026-07-23'
+method: searched
+source: https://akoya.com/security
+docs: https://docs.akoya.com/reference/api-overview
+standards:
+  - id: fdx
+    name: Financial Data Exchange (FDX) API
+    conforms: true
+    evidence: >-
+      Entire network implements the FDX API standard end-to-end; all data-access products are
+      FDX-aligned with a mode=standard parameter returning FDX-standardized values.
+    source: https://docs.akoya.com/reference/api-overview
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: authorization_code and client_credentials grants; id_token bearer + refresh_token.
+    source: https://docs.akoya.com/reference/token
+  - id: cfpb-1033
+    name: CFPB Section 1033 (Personal Financial Data Rights)
+    conforms: true
+    evidence: >-
+      Positioned as a compliant, tokenized rail for the US 1033 ecosystem; Akoya advocates FDX as
+      the recognized standard-setting body and files formal CFPB comments.
+    source: https://akoya.com/blog
+  - id: soc2-type2
+    name: SOC 2 Type 2
+    conforms: true
+    evidence: Independently audited annually against the AICPA Trust Services Criteria.
+    source: https://akoya.com/security
+  - id: fips-140
+    name: FIPS 140 (cryptographic modules)
+    conforms: true
+    evidence: Cryptographic modules govern protection of sensitive data per FIPS-140.
+    source: https://akoya.com/security
+  - id: nist-csf
+    name: NIST Cybersecurity Framework
+    conforms: true
+    evidence: Platform aligned with the NIST CSF; also guided by CIS and COSO frameworks.
+    source: https://akoya.com/security
+  - id: rfc9457-problem-details
+    name: RFC 9457 Problem Details
+    conforms: false
+    evidence: FDX-style error envelope; application/problem+json not documented.
+compliance_program:
+  published: true
+  url: https://akoya.com/security
+  certifications: [SOC 2 Type 2, FIPS 140]
+  frameworks: [NIST CSF, CIS, COSO]
+  data_handling: >-
+    Passthrough architecture — Akoya does not store consumer financial data at rest; all data is
+    encrypted in transit. Zero Trust, least-privilege, defense-in-depth security model.
