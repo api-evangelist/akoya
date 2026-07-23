@@ -1,0 +1,75 @@
+reviewer: API Evangelist
+date: '2026-07-23'
+slug: akoya
+name: Akoya
+tier: aggregator
+segment: US open finance / consumer-permissioned data-access network
+summary: >-
+  Akoya is a tokenized, consumer-permissioned data-access network for US open finance,
+  reaching 4,500+ financial institutions and 7,500+ apps/recipients. It is an aggregator-class
+  provider (alongside Plaid, MX, and Finicity) that implements the FDX API standard to replace
+  screen-scraping with OAuth 2.0, token-permissioned access to consumer financial data. The
+  public API surface was deepened from a single lumped FDX entry to eleven real, separately
+  documented products: eight consumer data-access products (Accounts/Account Details, Balances,
+  Transactions, Investments incl. tax lots, Statements, Customers, Tax forms, Payments) and
+  three platform/service APIs (Consent, Apps Management, Notifications).
+developer_portal: https://docs.akoya.com/
+developer_portal_status: 200 (readme.io reference hub; SPA — returns 200 for all slugs)
+documented_apis:
+  - Accounts / Account Details (FDX)
+  - Balances
+  - Transactions
+  - Investments (holdings + tax lots)
+  - Statements
+  - Customers
+  - Tax forms (1099 variants)
+  - Payments (ACH/RTP payment networks)
+  - Consent API (platform)
+  - Apps Management API (platform)
+  - Notifications API (platform / outage webhooks)
+base_urls:
+  production: https://api.akoya.com
+  sandbox: https://sandbox-products.ddp.akoya.com (data-provider-scoped routes under ddp.akoya.com)
+auth_model: >-
+  OAuth 2.0. Consumers authenticate and grant consent at their own financial institution's
+  authorization server; data recipients use client-credentials to obtain an authorization code,
+  exchange it for an access token, and call FDX-aligned REST endpoints. Platform/service APIs
+  (Consent, Apps Management, Notifications) use a service token (client credentials) as bearer.
+spec_provenance:
+  openapi_downloadable: false
+  detail: >-
+    Documentation is authored as OpenAPI 3.1.0 (reported doc version ~2.4.0, Sept 2025) but is
+    rendered client-side via the docs.akoya.com readme.io reference hub. No publicly downloadable
+    OpenAPI/Swagger/Postman artifact was found at guessable paths (docs.akoya.com/openapi/download
+    -> 404; api.akoya.com/openapi.json -> 404). Akoya's GitHub org (github.com/akoya-llc, 3 public
+    repos) publishes only Go code samples (go-fetch-auth-code, go-exchange-auth-code-for-token,
+    go-fetch-accounts) demonstrating the OAuth client-credentials -> auth-code -> token -> fetch
+    flow; no spec is committed there. No spec harvested — represented humanURL-only, honestly.
+fdx_1033_posture:
+  fdx_participation: >-
+    Core to the business. Akoya's entire network implements the Financial Data Exchange (FDX)
+    API standard end-to-end; all data-access products are FDX-aligned with a mode=standard
+    parameter returning FDX-standardized values.
+  cfpb_1033: >-
+    Positioned as a compliant rail for the US Personal Financial Data Rights (CFPB Section 1033)
+    ecosystem — a permissioned, tokenized alternative to screen-scraping for consumer data access.
+  aggregator_posture: >-
+    Aggregator/network provider itself (peer to Plaid, MX, Finicity). Production access is not
+    self-serve open; it requires an Akoya network membership agreement. Free self-service sandbox
+    is available for development.
+verified_links:
+  - {type: Website, url: 'https://akoya.com/', status: 200}
+  - {type: DeveloperPortal, url: 'https://docs.akoya.com/', status: 200}
+  - {type: Documentation, url: 'https://docs.akoya.com/reference/api-overview', status: 200}
+  - {type: GitHubOrganization, url: 'https://github.com/akoya-llc', status: 200}
+  - {type: LinkedIn, url: 'https://www.linkedin.com/company/akoyanetwork', status: '999 (anti-bot; page real)'}
+  - {type: Support, url: 'https://akoya.com/contact', status: 200}
+  - {type: Pricing, url: 'https://akoya.com/pricing', status: 200}
+  - {type: TermsOfService, url: 'https://akoya.com/terms-of-use', status: 200}
+  - {type: PrivacyPolicy, url: 'https://akoya.com/privacy-policy', status: 200}
+  - {type: Security, url: 'https://akoya.com/security', status: 200}
+  - {type: Blog, url: 'https://akoya.com/blog', status: 200}
+notes:
+  - LlmsText pointer removed — https://akoya.com/llms.txt returns a HubSpot HTML stub, not a real llms.txt.
+  - No StatusPage found (status.akoya.com does not resolve).
+  - Data-recipient onboarding lives behind the Data Recipient Hub (recipient.ddp.akoya.com/login).

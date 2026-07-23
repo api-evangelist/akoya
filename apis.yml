@@ -2,86 +2,443 @@ aid: akoya
 url: https://raw.githubusercontent.com/api-evangelist/akoya/refs/heads/main/apis.yml
 name: Akoya
 kind: company
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/akoya.png
 tags:
   - Fintech
   - Open Banking
+  - Open Finance
   - Aggregator
+  - Data Access Network
   - Tokenized
-  - US
+  - Consumer-Permissioned
   - FDX
   - Account Aggregation
+  - United States
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-07-23'
 specificationVersion: '0.19'
 description: >-
-  Akoya is a tokenized data-access network for US financial institutions. It implements the
-  Financial Data Exchange (FDX) API standard, replacing screen-scraping with token-permissioned
-  API access to consumer accounts. Akoya APIs are FDX-aligned: Accounts, Account Details,
-  Account Statements, Transactions, Investments, Tax forms, Payments, and Customer endpoints.
-  OAuth 2.0 authentication.
+  Akoya operates a tokenized, consumer-permissioned data-access network for US open finance,
+  reaching 4,500+ financial institutions and powering 7,500+ apps and data recipients. It
+  implements the Financial Data Exchange (FDX) API standard to replace screen-scraping with
+  token-permissioned, OAuth 2.0 access to consumer financial data. The Akoya API surface is
+  a 100% API-driven catalog organized into consumer data-access products — Accounts, Balances,
+  Transactions, Investments (holdings and tax lots), Statements, Customers, Tax forms, and
+  Payments (ACH/RTP payment networks) — plus a set of platform/service APIs for Consent, Apps
+  Management, and Notifications. Consumers authenticate at their own financial institution's
+  authorization server; data recipients exchange authorization codes for access tokens and
+  call FDX-aligned REST endpoints. Documentation is published as OpenAPI 3.1.0 (rendered via
+  the docs.akoya.com reference hub); Akoya's GitHub org ships Go code samples for the OAuth
+  client-credentials, auth-code, and account-fetch flows. There is no publicly downloadable
+  OpenAPI/Postman artifact — production access requires a network membership agreement.
 apis:
-  - aid: akoya:fdx-api
-    name: Akoya FDX API
+  - aid: akoya:accounts-api
+    name: Akoya Accounts API
     tags:
-      - FDX
       - Accounts
-      - Transactions
-      - Investments
-      - Tax
-      - Payments
-      - US
+      - Account Details
+      - FDX
+      - Open Finance
+      - Consumer-Permissioned
+      - United States
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.akoya.com
-    humanURL: https://docs.akoya.com/
+    humanURL: https://docs.akoya.com/reference/get-accounts
     description: >-
-      FDX-aligned REST API exposing Accounts (list), Account Details, Account Statements,
-      Transactions, Investments, Tax forms (1099-INT, 1099-DIV, etc.), Payments, and Customer
-      endpoints. OAuth 2.0 with consumer consent at the data-provider's authorization server.
-      Sandbox at sandbox-products.ddp.akoya.com.
+      FDX-aligned REST endpoints returning the list of a consumer's permissioned accounts and
+      detailed account information (account identifiers, type, status, nickname, and product
+      details) for the accounts a consumer has consented to share. Supports a mode query
+      parameter to return FDX-standardized data values. Sandbox routes resolve per data
+      provider under ddp.akoya.com (e.g. /accounts/v3/{provider} and /accounts-info/v3/{provider});
+      production is served from api.akoya.com. Access uses OAuth 2.0 with consumer consent
+      obtained at the data provider's own authorization server.
     properties:
       - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
         url: https://docs.akoya.com/
-      - type: Sandbox
-        url: https://sandbox-products.ddp.akoya.com
       - type: FDX Standard
         url: https://financialdataexchange.org/
     x-features:
-      - FDX-aligned API standard
+      - FDX-aligned Accounts and Account Details resources
       - OAuth 2.0 token-permissioned access
-      - Tax form data (1099 variants)
-      - Investment account details
-      - Major US bank network coverage
+      - mode=standard FDX-standardized values
+      - Sandbox routing per data provider
     x-use-cases:
-      - Personal finance management
-      - Lending decisioning
+      - Account opening and verification
+      - Personal financial management
+      - Business financial management
+  - aid: akoya:balances-api
+    name: Akoya Balances API
+    tags:
+      - Balances
+      - Accounts
+      - FDX
+      - Open Finance
+      - Consumer-Permissioned
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://akoya.com/products/balances
+    description: >-
+      Returns real-time and available balance information for a consumer's permissioned
+      accounts across the Akoya network. Balances are exposed as FDX-aligned fields and are
+      commonly combined with the Accounts and Transactions products to power funding
+      verification, lending decisioning, and personal financial management use cases. Access
+      is OAuth 2.0 consumer-permissioned; consent is captured at the consumer's financial
+      institution and enforced by token scope.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - FDX-aligned balance fields
+      - Consumer-permissioned OAuth 2.0 access
+    x-use-cases:
+      - Funding and balance verification
+      - Lending and credit decisioning
+      - Personal financial management
+  - aid: akoya:transactions-api
+    name: Akoya Transactions API
+    tags:
+      - Transactions
+      - Accounts
+      - FDX
+      - Open Finance
+      - Consumer-Permissioned
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://docs.akoya.com/reference/get-transactions
+    description: >-
+      Retrieves transaction history for a consumer's permissioned accounts, returning
+      FDX-aligned transaction records (amount, date, description, categorization, and status).
+      Supports a mode query parameter to receive standardized FDX values and pagination for
+      longer histories. Transactions are one of Akoya's most-used data products, powering
+      personal financial management, lending, cash-flow underwriting, and business financial
+      management. OAuth 2.0 consumer-permissioned access with consent enforced by token scope.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/get-transactions
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - FDX-aligned transaction records
+      - mode=standard standardized values
+      - Paginated transaction history
+    x-use-cases:
+      - Cash-flow underwriting
+      - Personal financial management
+      - Lending and credit enhancement
+  - aid: akoya:investments-api
+    name: Akoya Investments API
+    tags:
+      - Investments
+      - Holdings
+      - Tax Lots
+      - Wealth
+      - FDX
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://akoya.com/products/investments
+    description: >-
+      Provides FDX-aligned investment and brokerage account data for consumer-permissioned
+      accounts, including holdings/positions and tax lots for wealth-management and investing
+      use cases. The taxlots endpoint returns cost-basis lot detail for permissioned
+      investment accounts. Data supports wealth aggregation, portfolio analysis, and advisor
+      tooling. OAuth 2.0 consumer-permissioned access at the data provider's authorization
+      server.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/get-investments
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - FDX-aligned holdings and positions
+      - Tax lots / cost-basis detail
+      - Consumer-permissioned OAuth 2.0 access
+    x-use-cases:
+      - Wealth management and investing
+      - Portfolio aggregation and analysis
+  - aid: akoya:statements-api
+    name: Akoya Statements API
+    tags:
+      - Statements
+      - Documents
+      - Accounts
+      - FDX
+      - Open Finance
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://akoya.com/products/statements
+    description: >-
+      Lists and retrieves account statements for a consumer's consented accounts, returning
+      the set of available statements (period, type, and document reference) so recipients can
+      access official statement documents for permissioned accounts. Used for lending
+      documentation, account verification, and financial record retrieval. OAuth 2.0
+      consumer-permissioned access enforced by consent scope.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - List of available account statements
+      - FDX-aligned statement metadata
+    x-use-cases:
+      - Lending documentation
+      - Financial record retrieval
+  - aid: akoya:customers-api
+    name: Akoya Customers API
+    tags:
+      - Customers
+      - Identity
+      - Contact
+      - FDX
+      - Consumer-Permissioned
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://akoya.com/products/customers
+    description: >-
+      Returns FDX-aligned customer/party information for the consumer who owns the permissioned
+      accounts — name, contact details, and identity attributes — supporting identity
+      verification, account opening, and KYC-adjacent flows. Data is limited to what the
+      consumer has consented to share and is scoped to the recipient's authorization. OAuth 2.0
+      consumer-permissioned access captured at the data provider's authorization server.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/get-customers
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - FDX-aligned customer/party data
+      - Contact and identity attributes
+      - Consumer-permissioned OAuth 2.0 access
+    x-use-cases:
+      - Identity verification
+      - Account opening and onboarding
+  - aid: akoya:payments-api
+    name: Akoya Payments API
+    tags:
+      - Payments
+      - ACH
+      - RTP
+      - Account Verification
+      - FDX
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://akoya.com/products/payments
+    description: >-
+      Provides secure, consumer-permissioned access to ACH and real-time payment (RTP) account
+      credentials — tokenized account and routing identifiers (bankId, identifier, type,
+      identifierType) — so recipients can verify accounts and authorize account-to-account
+      transfers without exposing raw account numbers. Enables instant account verification
+      (removing micro-deposits) and payment enablement. Aligned with FDX payment-network
+      resources and delivered over OAuth 2.0 consumer-permissioned access.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: ProductPage
+        url: https://akoya.com/products/payments
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - Tokenized ACH/RTP account credentials
+      - Instant account verification (no micro-deposits)
+      - FDX payment-network alignment
+    x-use-cases:
+      - Payment enablement / account-to-account transfers
+      - Account opening and verification
+  - aid: akoya:tax-api
+    name: Akoya Tax API
+    tags:
+      - Tax
+      - 1099
+      - Documents
+      - FDX
+      - Consumer-Permissioned
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://docs.akoya.com/reference/get-tax
+    description: >-
+      Retrieves FDX-aligned tax documents for a consumer's permissioned accounts — 1099 form
+      variants (1099-INT, 1099-DIV, 1099-B, and related) and associated tax data — so
+      recipients such as tax-preparation software can ingest official tax forms directly from
+      the source institution. Data is limited to consented accounts and enforced by token
+      scope. OAuth 2.0 consumer-permissioned access at the data provider's authorization server.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - FDX-aligned tax forms (1099 variants)
+      - Consumer-permissioned OAuth 2.0 access
+    x-use-cases:
       - Tax preparation software
-      - Wealth aggregation
+      - Income and asset verification
+  - aid: akoya:consent-api
+    name: Akoya Consent API
+    tags:
+      - Consent
+      - Authorization
+      - OAuth
+      - Platform
+      - Open Finance
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://docs.akoya.com/docs/akoya-apis
+    description: >-
+      Platform/service API for managing consumer consent grants across the Akoya network,
+      letting data recipients look up and manage the consent records that authorize access to a
+      consumer's financial data. Consent is central to Akoya's tokenized, permissioned model —
+      it records what a consumer agreed to share, with whom, and for how long, and is enforced
+      on every data-access call. Uses service-token (client credentials) authentication.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+      - type: FDX Standard
+        url: https://financialdataexchange.org/
+    x-features:
+      - Consent record lookup and management
+      - Enforced on every data-access call
+      - Service-token (client credentials) auth
+    x-use-cases:
+      - Consent lifecycle management
+      - Data-access governance and revocation
+  - aid: akoya:apps-management-api
+    name: Akoya Apps Management API
+    tags:
+      - Apps Management
+      - Platform
+      - Developer
+      - OAuth
+      - Administration
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://docs.akoya.com/docs/akoya-apis
+    description: >-
+      Platform/service API for creating and managing a data recipient's applications on the
+      Akoya network — registering apps, managing client credentials and configuration, and
+      administering the app registrations used to obtain tokens and call data-access products.
+      Intended for recipient administrators rather than end-consumer data flows. Uses
+      service-token (client credentials) authentication.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+    x-features:
+      - Create and manage recipient applications
+      - Manage client credentials and configuration
+      - Service-token (client credentials) auth
+    x-use-cases:
+      - Application registration and lifecycle
+      - Recipient administration
+  - aid: akoya:notifications-api
+    name: Akoya Notifications API
+    tags:
+      - Notifications
+      - Webhooks
+      - Platform
+      - Outages
+      - Operations
+      - United States
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    baseURL: https://api.akoya.com
+    humanURL: https://docs.akoya.com/docs/akoya-apis
+    description: >-
+      Platform/service API for subscribing to and receiving operational notifications about the
+      Akoya network, such as data-provider outages and availability events, delivered via
+      webhook callbacks to registered subscriptions. Lets data recipients react to provider
+      status changes programmatically rather than polling. Uses service-token (client
+      credentials) authentication for subscription management; sandbox test triggers emit
+      sample webhook payloads.
+    properties:
+      - type: Documentation
+        url: https://docs.akoya.com/reference/api-overview
+      - type: DeveloperPortal
+        url: https://docs.akoya.com/
+    x-features:
+      - Webhook notifications for outage/availability events
+      - Subscription management
+      - Sandbox test triggers with sample payloads
+    x-use-cases:
+      - Operational monitoring of data providers
+      - Automated failover and status handling
 common:
-  - type: TrustCenter
-    url: security/akoya-trust-center.yml
-  - type: DomainSecurity
-    url: security/akoya-domain-security.yml
+  - type: Website
+    url: https://akoya.com/
+  - type: Portal
+    url: https://akoya.com/
+  - type: DeveloperPortal
+    url: https://docs.akoya.com/
+  - type: Documentation
+    url: https://docs.akoya.com/reference/api-overview
   - type: GitHubOrganization
     url: https://github.com/akoya-llc
   - type: LinkedIn
     url: https://www.linkedin.com/company/akoyanetwork
-  - type: Portal
-    url: https://akoya.com/
-  - type: Documentation
-    url: https://docs.akoya.com/
+  - type: Support
+    url: https://akoya.com/contact
+  - type: Pricing
+    url: https://akoya.com/pricing
+  - type: TermsOfService
+    url: https://akoya.com/terms-of-use
+  - type: PrivacyPolicy
+    url: https://akoya.com/privacy-policy
+  - type: Security
+    url: https://akoya.com/security
   - type: FDX Standard
     url: https://financialdataexchange.org/
+  - type: TrustCenter
+    url: security/akoya-trust-center.yml
+  - type: DomainSecurity
+    url: security/akoya-domain-security.yml
   - type: Plans
     url: plans/akoya-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/akoya-rate-limits.yml
   - type: FinOps
     url: finops/akoya-finops.yml
-  - type: LlmsText
-    url: https://akoya.com/llms.txt
-  - url: https://akoya.com/news/
-    type: Blog
+  - type: Blog
+    url: https://akoya.com/blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
