@@ -39,7 +39,7 @@ tags:
   - United States
 created: '2026-05-08'
 modified: '2026-07-23'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: >-
   Akoya operates a tokenized, consumer-permissioned data-access network for US open finance,
   reaching 4,500+ financial institutions and powering 7,500+ apps and data recipients. It
