@@ -58,6 +58,13 @@ apis:
   - aid: akoya:accounts-api
     name: Akoya Accounts API
     tags:
+      - Account
+      - Account Details
+      - FDX
+      - Open Finance
+      - Consumer-Permissioned
+      - United States
+    tags_raw:
       - Accounts
       - Account Details
       - FDX
@@ -95,6 +102,13 @@ apis:
     name: Akoya Balances API
     tags:
       - Balances
+      - Account
+      - FDX
+      - Open Finance
+      - Consumer-Permissioned
+      - United States
+    tags_raw:
+      - Balances
       - Accounts
       - FDX
       - Open Finance
@@ -127,6 +141,13 @@ apis:
   - aid: akoya:transactions-api
     name: Akoya Transactions API
     tags:
+      - Transaction
+      - Account
+      - FDX
+      - Open Finance
+      - Consumer-Permissioned
+      - United States
+    tags_raw:
       - Transactions
       - Accounts
       - FDX
@@ -194,6 +215,13 @@ apis:
   - aid: akoya:statements-api
     name: Akoya Statements API
     tags:
+      - Statements
+      - Documents
+      - Account
+      - FDX
+      - Open Finance
+      - United States
+    tags_raw:
       - Statements
       - Documents
       - Accounts
@@ -325,6 +353,13 @@ apis:
     tags:
       - Consent
       - Authorization
+      - Authentication
+      - Platform
+      - Open Finance
+      - United States
+    tags_raw:
+      - Consent
+      - Authorization
       - OAuth
       - Platform
       - Open Finance
@@ -357,6 +392,13 @@ apis:
     tags:
       - Apps Management
       - Platform
+      - Developers
+      - Authentication
+      - Administration
+      - United States
+    tags_raw:
+      - Apps Management
+      - Platform
       - Developer
       - OAuth
       - Administration
@@ -385,6 +427,12 @@ apis:
   - aid: akoya:notifications-api
     name: Akoya Notifications API
     tags:
+      - Notification
+      - Webhook
+      - Platform
+      - Outages
+      - United States
+    tags_raw:
       - Notifications
       - Webhooks
       - Platform
