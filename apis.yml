@@ -182,6 +182,13 @@ apis:
   - aid: akoya:investments-api
     name: Akoya Investments API
     tags:
+      - Investment
+      - Holdings
+      - Tax Lots
+      - Wealth
+      - FDX
+      - United States
+    tags_raw:
       - Investments
       - Holdings
       - Tax Lots
