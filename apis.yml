@@ -39,7 +39,7 @@ tags:
   - United States
   - Data Aggregation
 created: '2026-05-08'
-modified: '2026-07-23'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 description: >-
   Akoya operates a tokenized, consumer-permissioned data-access network for US open finance,
@@ -470,6 +470,10 @@ apis:
       - Operational monitoring of data providers
       - Automated failover and status handling
 common:
+  - url: https://akoya.com/news
+    type: Blog
+  - url: https://akoya.com/news/rss.xml
+    type: BlogRSS
   - type: Website
     url: https://akoya.com/
   - type: Portal
