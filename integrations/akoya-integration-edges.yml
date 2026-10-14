@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/akoya/integrations
 - https://n8n.io/integrations/akoya/
@@ -9,8 +9,34 @@ checked:
 - https://composio.dev/toolkits/akoya
 - https://monid.ai/tools/akoya
 - https://n8n.io/integrations/akoya/
+- https://registry.financialdataexchange.org/
 - https://zapier.com/apps/akoya/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: FDX (Financial Data Exchange)
+  partner: fdx
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.financialdataexchange.org/
+  contract_reference:
+    register: FDX Registry
+    standard: FDX API
+    spec_file: null
+    register_api: https://registry.financialdataexchange.org/fdxregistryapi/organizations/search/listingTags
+    role: data-access-platform
+    member_type: MEMBER
+    registered_name: Akoya
+    register_id: 149
+    registered_website: www.akoya.com
+    country: United States
+    fdx_version:
+    - '4.5'
+    matched_by: domain:akoya.com
+    detected_by: sweep-fdx.py
+    detected: '2026-10-14'
+  detected_by: sweep-fdx.py
+  first_seen: '2026-10-14'
 templates: []
