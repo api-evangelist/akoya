@@ -2,25 +2,28 @@
   "repo": "akoya",
   "feeds": [
     {
+      "source": "https://akoya.com/news",
+      "feed_url": "https://akoya.com/news/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://akoya.com/news/rss.xml",
       "feed_url": "https://akoya.com/news/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "feed",
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
+      "method": "feed"
     },
     {
-      "source": "https://akoya.com/news/",
-      "feed_url": "https://akoya.com/news/rss.xml",
+      "source": "https://akoya.com/blog",
+      "feed_url": "https://akoya.com/blog/rss.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered",
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
+      "method": "discovered"
     }
   ],
-  "fetched": "2026-10-03T12:15:37Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 24,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
