@@ -1,4 +1,4 @@
-# Akoya (akoya)
+# Akoya
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,50 +64,133 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Akoya is a tokenized data-access network for US financial institutions. It implements the Financial Data Exchange (FDX) API standard, replacing screen-scraping with token-permissioned API access to consumer accounts.
+Akoya operates a tokenized, consumer-permissioned data-access network for US open finance, reaching 4,500+ financial institutions and powering 7,500+ apps and data recipients. It implements the Financial Data Exchange (FDX) API standard to replace screen-scraping with token-permissioned, OAuth 2.0 access to consumer financial data. The Akoya API surface is a 100% API-driven catalog organized into consumer data-access products — Accounts, Balances, Transactions, Investments (holdings and tax lots), Statements, Customers, Tax forms, and Payments (ACH/RTP payment networks) — plus a set of platform/service APIs for Consent, Apps Management, and Notifications. Consumers authenticate at their own financial institution's authorization server; data recipients exchange authorization codes for access tokens and call FDX-aligned REST endpoints. Documentation is published as OpenAPI 3.1.0 (rendered via the docs.akoya.com reference hub); Akoya's GitHub org ships Go code samples for the OAuth client-credentials, auth-code, and account-fetch flows. There is no publicly downloadable OpenAPI/Postman artifact — production access requires a network membership agreement.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/akoya/refs/heads/main/apis.yml)
+**Areas:** Fintech · Open Banking · Open Finance · Aggregator · Data Access Network · Tokenized · Consumer-Permissioned · FDX · Account Aggregation · United States · Data Aggregation
 
-## Type
-- **x-type:** company
+## Akoya on APIs.io
 
-## Tags
-- Fintech, Open Banking, Open Finance, Aggregator, Data Access Network, Tokenized, Consumer-Permissioned, FDX, Account Aggregation, United States
+Everything profiled for Akoya is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/akoya/](https://apis.io/providers/akoya/)** — or go straight to one of the APIs or properties below.
 
-## APIs
-Production base URL `https://api.akoya.com`; sandbox routes are data-provider-scoped under `ddp.akoya.com` (e.g. `https://sandbox-products.ddp.akoya.com`). All products are FDX-aligned and use OAuth 2.0 consumer-permissioned access.
+### APIs (11)
 
-Consumer data-access products:
-- **Akoya Accounts API** - Accounts + Account Details (FDX)
-- **Akoya Balances API** - real-time / available balances
-- **Akoya Transactions API** - permissioned transaction history
-- **Akoya Investments API** - holdings + tax lots
-- **Akoya Statements API** - available account statements
-- **Akoya Customers API** - customer/party identity + contact
-- **Akoya Tax API** - 1099 tax form variants
-- **Akoya Payments API** - tokenized ACH/RTP account credentials
+- [Akoya Accounts API](https://apis.io/apis/akoya/accounts-api/) — FDX-aligned REST endpoints returning the list of a consumer's permissioned accounts and detailed account information (account identifiers, type, status,…
+- [Akoya Balances API](https://apis.io/apis/akoya/balances-api/) — Returns real-time and available balance information for a consumer's permissioned accounts across the Akoya network. Balances are exposed as FDX-aligned…
+- [Akoya Transactions API](https://apis.io/apis/akoya/transactions-api/) — Retrieves transaction history for a consumer's permissioned accounts, returning FDX-aligned transaction records (amount, date, description, categorization,…
+- [Akoya Investments API](https://apis.io/apis/akoya/investments-api/) — Provides FDX-aligned investment and brokerage account data for consumer-permissioned accounts, including holdings/positions and tax lots for…
+- [Akoya Statements API](https://apis.io/apis/akoya/statements-api/) — Lists and retrieves account statements for a consumer's consented accounts, returning the set of available statements (period, type, and document reference)…
+- [Akoya Customers API](https://apis.io/apis/akoya/customers-api/) — Returns FDX-aligned customer/party information for the consumer who owns the permissioned accounts — name, contact details, and identity attributes —…
+- [Akoya Payments API](https://apis.io/apis/akoya/payments-api/) — Provides secure, consumer-permissioned access to ACH and real-time payment (RTP) account credentials — tokenized account and routing identifiers (bankId,…
+- [Akoya Tax API](https://apis.io/apis/akoya/tax-api/) — Retrieves FDX-aligned tax documents for a consumer's permissioned accounts — 1099 form variants (1099-INT, 1099-DIV, 1099-B, and related) and associated tax…
+- [Akoya Consent API](https://apis.io/apis/akoya/consent-api/) — Platform/service API for managing consumer consent grants across the Akoya network, letting data recipients look up and manage the consent records that…
+- [Akoya Apps Management API](https://apis.io/apis/akoya/apps-management-api/) — Platform/service API for creating and managing a data recipient's applications on the Akoya network — registering apps, managing client credentials and…
+- [Akoya Notifications API](https://apis.io/apis/akoya/notifications-api/) — Platform/service API for subscribing to and receiving operational notifications about the Akoya network, such as data-provider outages and availability…
 
-Platform / service APIs:
-- **Akoya Consent API** - consent grant lookup/management
-- **Akoya Apps Management API** - recipient app registration/administration
-- **Akoya Notifications API** - outage/availability webhooks
+### Published properties
 
-## Notes on OpenAPI
-Akoya authors its docs as OpenAPI 3.1.0 but renders them client-side via the docs.akoya.com readme.io reference hub — there is **no publicly downloadable OpenAPI/Postman artifact** (guessable spec paths 404). The GitHub org `github.com/akoya-llc` publishes only Go code samples for the OAuth flow. Represented humanURL-only, honestly. The FDX standard at https://financialdataexchange.org/ is the canonical specification. Production access requires an Akoya network membership agreement (free self-service sandbox available).
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
-- **Created:** 2026-05-08
-- **Modified:** 2026-07-23
+#### AsyncAPI (1)
 
-## Common Properties
-- [Portal](https://akoya.com/)
-- [Documentation](https://docs.akoya.com/)
-- [FDX Standard](https://financialdataexchange.org/)
-- [Plans](plans/akoya-plans-pricing.yml) - reconciled (network membership)
-- [RateLimits](rate-limits/akoya-rate-limits.yml) - partially reconciled
-- [FinOps](finops/akoya-finops.yml) - reconciled FOCUS-aligned
+Event-driven and webhook contracts.
 
-## Maintainers
-**FN:** Kin Lane
+- [Akoya Notifications Webhooks](https://apis.io/asyncapis/akoya/akoya-notifications-webhooks/)
 
-**Email:** kin@apievangelist.com
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Akoya Authentication](https://apis.io/security/akoya/akoya-authentication/)
+- [Akoya Domain Security](https://apis.io/security/akoya/akoya-domain-security/)
+- [Akoya Trust Center](https://apis.io/security/akoya/akoya-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Akoya Plans Pricing](https://apis.io/plans/akoya/akoya-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Akoya Rate Limits](https://apis.io/rate-limits/akoya/akoya-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Akoya Finops](https://apis.io/finops/akoya/akoya-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://akoya.com/)
+- [Documentation](https://docs.akoya.com/reference/api-overview)
+- [Getting started](https://docs.akoya.com/docs/getting-started)
+- [API reference](https://docs.akoya.com/reference/api-overview)
+- [Pricing](https://akoya.com/pricing)
+- [Support](https://akoya.com/contact)
+- [Changelog](https://docs.akoya.com/changelog)
+- [Blog](https://akoya.com/news)
+- [Security](https://akoya.com/security)
+- [Compliance](https://akoya.com/security)
+- [Terms of service](https://akoya.com/terms-of-use)
+- [Privacy policy](https://akoya.com/privacy-policy)
+- [GitHub](https://github.com/akoya-llc)
+
+## API Evangelist rating
+
+**Kin Score 50.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 64.3 |
+| Access clarity | 59.2 |
+
+**Agent readiness 21.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 23.6** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/akoya/](https://apis.io/providers/akoya/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Akoya: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/akoya/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
